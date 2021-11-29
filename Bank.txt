@@ -1,0 +1,532 @@
+SQL> create table br593(bname varchar2(10), bcity varchar2(10), assests varchar2(10), primary key(bn
+ame));
+
+Table created.
+
+SQL> insert into br593 values('&bname', '&bcity', '&assests');
+Enter value for bname: Brichton
+Enter value for bcity: London
+Enter value for assests: 100M$
+old   1: insert into br593 values('&bname', '&bcity', '&assests')
+new   1: insert into br593 values('Brichton', 'London', '100M$')
+
+1 row created.
+
+SQL> /
+Enter value for bname: DownTown
+Enter value for bcity: NewYork
+Enter value for assests: 150M$
+old   1: insert into br593 values('&bname', '&bcity', '&assests')
+new   1: insert into br593 values('DownTown', 'NewYork', '150M$')
+
+1 row created.
+
+SQL> /
+Enter value for bname: Miamus
+Enter value for bcity: Miami
+Enter value for assests: 95M$
+old   1: insert into br593 values('&bname', '&bcity', '&assests')
+new   1: insert into br593 values('Miamus', 'Miami', '95M$')
+
+1 row created.
+
+SQL> /
+Enter value for bname: PerryRidge
+Enter value for bcity: Washington
+Enter value for assests: 200M$
+old   1: insert into br593 values('&bname', '&bcity', '&assests')
+new   1: insert into br593 values('PerryRidge', 'Washington', '200M$')
+
+1 row created.
+
+SQL> /
+Enter value for bname: RedWood
+Enter value for bcity: Delhi
+Enter value for assests: 125M$
+old   1: insert into br593 values('&bname', '&bcity', '&assests')
+new   1: insert into br593 values('RedWood', 'Delhi', '125M$')
+
+1 row created.
+
+SQL> /
+Enter value for bname: RoundHill
+Enter value for bcity: Mumbai
+Enter value for assests: 175M$
+old   1: insert into br593 values('&bname', '&bcity', '&assests')
+new   1: insert into br593 values('RoundHill', 'Mumbai', '175M$')
+
+1 row created.
+
+SQL> create table acc593(accno varchar2(10), bname varchar2(10), bal number(10), primary key(accno),
+foreign key(bname) references br593);
+
+Table created.
+
+SQL> insert into acc593 values('&accno', '&bname', &balance);
+Enter value for accno: a1
+Enter value for bname: Brichton
+Enter value for balance: 12419
+old   1: insert into acc593 values('&accno', '&bname', &balance)
+new   1: insert into acc593 values('a1', 'Brichton', 12419)
+
+1 row created.
+
+SQL> /
+Enter value for accno: a2
+Enter value for bname: DownTown
+Enter value for balance: 7894
+old   1: insert into acc593 values('&accno', '&bname', &balance)
+new   1: insert into acc593 values('a2', 'DownTown', 7894)
+
+1 row created.
+
+SQL> /
+Enter value for accno: a3
+Enter value for bname: Miamus
+Enter value for balance: 12345
+old   1: insert into acc593 values('&accno', '&bname', &balance)
+new   1: insert into acc593 values('a3', 'Miamus', 12345)
+
+1 row created.
+
+SQL> /
+Enter value for accno: a4
+Enter value for bname: PerryRidge
+Enter value for balance: 54321
+old   1: insert into acc593 values('&accno', '&bname', &balance)
+new   1: insert into acc593 values('a4', 'PerryRidge', 54321)
+
+1 row created.
+
+SQL> /
+Enter value for accno: a5
+Enter value for bname: RedWood
+Enter value for balance: 25896
+old   1: insert into acc593 values('&accno', '&bname', &balance)
+new   1: insert into acc593 values('a5', 'RedWood', 25896)
+
+1 row created.
+
+SQL> /
+Enter value for accno: a6
+Enter value for bname: RoundHill
+Enter value for balance: 654321
+old   1: insert into acc593 values('&accno', '&bname', &balance)
+new   1: insert into acc593 values('a6', 'RoundHill', 654321)
+
+1 row created.
+
+SQL> create table loan593(loanno varchar2(10), bname varchar2(10), amount number(10), primary key(lo
+anno), foreign key(bname) references br593);
+
+Table created.
+
+SQL> insert into loan593 values('&loanno', '&bname', &amount);
+Enter value for loanno: l1
+Enter value for bname: Brichton
+Enter value for amount: 150000
+old   1: insert into loan593 values('&loanno', '&bname', &amount)
+new   1: insert into loan593 values('l1', 'Brichton', 150000)
+
+1 row created.
+
+SQL> /
+Enter value for loanno: l2
+Enter value for bname: DownTown
+Enter value for amount: 100000
+old   1: insert into loan593 values('&loanno', '&bname', &amount)
+new   1: insert into loan593 values('l2', 'DownTown', 100000)
+
+1 row created.
+
+SQL> /
+Enter value for loanno: l3
+Enter value for bname: Miamus
+Enter value for amount: 80000
+old   1: insert into loan593 values('&loanno', '&bname', &amount)
+new   1: insert into loan593 values('l3', 'Miamus', 80000)
+
+1 row created.
+
+SQL> /
+Enter value for loanno: l4
+Enter value for bname: PerryRidge
+Enter value for amount: 120000
+old   1: insert into loan593 values('&loanno', '&bname', &amount)
+new   1: insert into loan593 values('l4', 'PerryRidge', 120000)
+
+1 row created.
+
+SQL> /
+Enter value for loanno: l5
+Enter value for bname: RedWood
+Enter value for amount: 200000
+old   1: insert into loan593 values('&loanno', '&bname', &amount)
+new   1: insert into loan593 values('l5', 'RedWood', 200000)
+
+1 row created.
+
+SQL> /
+Enter value for loanno: l6
+Enter value for bname: RoundHill
+Enter value for amount: 500000
+old   1: insert into loan593 values('&loanno', '&bname', &amount)
+new   1: insert into loan593 values('l6', 'RoundHill', 500000)
+
+1 row created.
+
+SQL> select * from br593;
+
+BNAME      BCITY      ASSESTS
+---------- ---------- ----------
+Brichton   London     100M$
+DownTown   NewYork    150M$
+Miamus     Miami      95M$
+PerryRidge Washington 200M$
+RedWood    Delhi      125M$
+RoundHill  Mumbai     175M$
+
+6 rows selected.
+
+SQL> select * from acc593;
+
+ACCNO      BNAME             BAL
+---------- ---------- ----------
+a1         Brichton        12419
+a2         DownTown         7894
+a3         Miamus          12345
+a4         PerryRidge      54321
+a5         RedWood         25896
+a6         RoundHill      654321
+
+6 rows selected.
+
+SQL> select * from loan593;
+
+LOANNO     BNAME          AMOUNT
+---------- ---------- ----------
+l1         Brichton       150000
+l2         DownTown       100000
+l3         Miamus          80000
+l4         PerryRidge     120000
+l5         RedWood        200000
+l6         RoundHill      500000
+
+6 rows selected.
+
+SQL> create table cust593(cname varchar2(10), cstreet varchar2(10), ccity varchar2(10), primary key(
+cname));
+
+Table created.
+
+SQL> insert into cust593 values('&cname', '&cstreet', '&ccity');
+Enter value for cname: Adarsh
+Enter value for cstreet: STREET1
+Enter value for ccity: Delhi
+old   1: insert into cust593 values('&cname', '&cstreet', '&ccity')
+new   1: insert into cust593 values('Adarsh', 'STREET1', 'Delhi')
+
+1 row created.
+
+SQL> /
+Enter value for cname: Vamsi
+Enter value for cstreet: STREET2
+Enter value for ccity: Delhi
+old   1: insert into cust593 values('&cname', '&cstreet', '&ccity')
+new   1: insert into cust593 values('Vamsi', 'STREET2', 'Delhi')
+
+1 row created.
+
+SQL> /
+Enter value for cname: Varma
+Enter value for cstreet: STREET3
+Enter value for ccity: Mumbai
+old   1: insert into cust593 values('&cname', '&cstreet', '&ccity')
+new   1: insert into cust593 values('Varma', 'STREET3', 'Mumbai')
+
+1 row created.
+
+SQL> /
+Enter value for cname: Sharma
+Enter value for cstreet: STREET4
+Enter value for ccity: Pune
+old   1: insert into cust593 values('&cname', '&cstreet', '&ccity')
+new   1: insert into cust593 values('Sharma', 'STREET4', 'Pune')
+
+1 row created.
+
+SQL> /
+Enter value for cname: David
+Enter value for cstreet: STREET5
+Enter value for ccity: London
+old   1: insert into cust593 values('&cname', '&cstreet', '&ccity')
+new   1: insert into cust593 values('David', 'STREET5', 'London')
+
+1 row created.
+
+SQL> /
+Enter value for cname: Joyce
+Enter value for cstreet: STREET6
+Enter value for ccity: London
+old   1: insert into cust593 values('&cname', '&cstreet', '&ccity')
+new   1: insert into cust593 values('Joyce', 'STREET6', 'London')
+
+1 row created.
+
+SQL> /
+Enter value for cname: Frank
+Enter value for cstreet: STREET7
+Enter value for ccity: NewYork
+old   1: insert into cust593 values('&cname', '&cstreet', '&ccity')
+new   1: insert into cust593 values('Frank', 'STREET7', 'NewYork')
+
+1 row created.
+
+SQL> /
+Enter value for cname: Mathew
+Enter value for cstreet: STREET8
+Enter value for ccity: NewYork
+old   1: insert into cust593 values('&cname', '&cstreet', '&ccity')
+new   1: insert into cust593 values('Mathew', 'STREET8', 'NewYork')
+
+1 row created.
+
+SQL> /
+Enter value for cname: Priya
+Enter value for cstreet: STREET9
+Enter value for ccity: Miami
+old   1: insert into cust593 values('&cname', '&cstreet', '&ccity')
+new   1: insert into cust593 values('Priya', 'STREET9', 'Miami')
+
+1 row created.
+
+SQL> /
+Enter value for cname: Alex
+Enter value for cstreet: STREET10
+Enter value for ccity: Miami
+old   1: insert into cust593 values('&cname', '&cstreet', '&ccity')
+new   1: insert into cust593 values('Alex', 'STREET10', 'Miami')
+
+1 row created.
+
+SQL> /
+Enter value for cname: Steve
+Enter value for cstreet: STREET11
+Enter value for ccity: Washington
+old   1: insert into cust593 values('&cname', '&cstreet', '&ccity')
+new   1: insert into cust593 values('Steve', 'STREET11', 'Washington')
+
+1 row created.
+
+SQL> /
+Enter value for cname: Maxine
+Enter value for cstreet: STREET12
+Enter value for ccity: Washington
+old   1: insert into cust593 values('&cname', '&cstreet', '&ccity')
+new   1: insert into cust593 values('Maxine', 'STREET12', 'Washington')
+
+1 row created.
+
+SQL> select * from cust593;
+
+CNAME      CSTREET    CCITY
+---------- ---------- ----------
+Adarsh     STREET1    Delhi
+Vamsi      STREET2    Delhi
+Varma      STREET3    Mumbai
+Sharma     STREET4    Pune
+David      STREET5    London
+Joyce      STREET6    London
+Frank      STREET7    NewYork
+Mathew     STREET8    NewYork
+Priya      STREET9    Miami
+Alex       STREET10   Miami
+Steve      STREET11   Washington
+
+CNAME      CSTREET    CCITY
+---------- ---------- ----------
+Maxine     STREET12   Washington
+
+12 rows selected.
+
+SQL> select * from acc593;
+
+ACCNO      BNAME             BAL
+---------- ---------- ----------
+a1         Brichton        12419
+a2         DownTown         7894
+a3         Miamus          12345
+a4         PerryRidge      54321
+a5         RedWood         25896
+a6         RoundHill      654321
+
+6 rows selected.
+
+SQL> create table deposit593(cname varchar2(10), accno varchar2(10), foreign key(cname) references c
+ust593, foreign key (accno) references acc593);
+
+Table created.
+
+SQL> insert into deposit593 values('&cname', '&accno');
+Enter value for cname: David
+Enter value for accno: a1
+old   1: insert into deposit593 values('&cname', '&accno')
+new   1: insert into deposit593 values('David', 'a1')
+
+1 row created.
+
+SQL> /
+Enter value for cname: Mathew
+Enter value for accno: a2
+old   1: insert into deposit593 values('&cname', '&accno')
+new   1: insert into deposit593 values('Mathew', 'a2')
+
+1 row created.
+
+SQL> /
+Enter value for cname: Alex
+Enter value for accno: a3
+old   1: insert into deposit593 values('&cname', '&accno')
+new   1: insert into deposit593 values('Alex', 'a3')
+
+1 row created.
+
+SQL> /
+Enter value for cname: Maxine
+Enter value for accno: a4
+old   1: insert into deposit593 values('&cname', '&accno')
+new   1: insert into deposit593 values('Maxine', 'a4')
+
+1 row created.
+
+SQL> /
+Enter value for cname: Adarsh
+Enter value for accno: a5
+old   1: insert into deposit593 values('&cname', '&accno')
+new   1: insert into deposit593 values('Adarsh', 'a5')
+
+1 row created.
+
+SQL> /
+Enter value for cname: Varma
+Enter value for accno: a6
+old   1: insert into deposit593 values('&cname', '&accno')
+new   1: insert into deposit593 values('Varma', 'a6')
+
+1 row created.
+
+SQL> create table borrow593(cname varchar2(10), loanno varchar2(10), foreign key(cname) references c
+ust593, foreign key(loanno) references loan593);
+
+Table created.
+
+SQL> /
+Enter value for cname: Joyce
+Enter value for loanno: l1
+old   1: insert into borrow593 values('&cname', '&loanno')
+new   1: insert into borrow593 values('Joyce', 'l1')
+
+1 row created.
+
+SQL> select * from cust593;
+
+CNAME      CSTREET    CCITY
+---------- ---------- ----------
+Adarsh     STREET1    Delhi
+Vamsi      STREET2    Delhi
+Varma      STREET3    Mumbai
+Sharma     STREET4    Pune
+David      STREET5    London
+Joyce      STREET6    London
+Frank      STREET7    NewYork
+Mathew     STREET8    NewYork
+Priya      STREET9    Miami
+Alex       STREET10   Miami
+Steve      STREET11   Washington
+
+CNAME      CSTREET    CCITY
+---------- ---------- ----------
+Maxine     STREET12   Washington
+
+12 rows selected.
+
+SQL> select * from deposit593;
+
+CNAME      ACCNO
+---------- ----------
+David      a1
+Mathew     a2
+Alex       a3
+Maxine     a4
+Adarsh     a5
+Varma      a6
+
+6 rows selected.
+
+SQL> insert into borrow593 values('&cname', '&loanno');
+Enter value for cname: Frank
+Enter value for loanno: l2
+old   1: insert into borrow593 values('&cname', '&loanno')
+new   1: insert into borrow593 values('Frank', 'l2')
+
+1 row created.
+
+SQL> /
+Enter value for cname: Priya
+Enter value for loanno: l3
+old   1: insert into borrow593 values('&cname', '&loanno')
+new   1: insert into borrow593 values('Priya', 'l3')
+
+1 row created.
+
+SQL> /
+Enter value for cname: Steve
+Enter value for loanno: l4
+old   1: insert into borrow593 values('&cname', '&loanno')
+new   1: insert into borrow593 values('Steve', 'l4')
+
+1 row created.
+
+SQL> /
+Enter value for cname: Vamsi
+Enter value for loanno: l5
+old   1: insert into borrow593 values('&cname', '&loanno')
+new   1: insert into borrow593 values('Vamsi', 'l5')
+
+1 row created.
+
+SQL> /
+Enter value for cname: Sharma
+Enter value for loanno: l6
+old   1: insert into borrow593 values('&cname', '&loanno')
+new   1: insert into borrow593 values('Sharma', 'l6')
+
+1 row created.
+
+SQL> select * from loan593;
+
+LOANNO     BNAME          AMOUNT
+---------- ---------- ----------
+l1         Brichton       150000
+l2         DownTown       100000
+l3         Miamus          80000
+l4         PerryRidge     120000
+l5         RedWood        200000
+l6         RoundHill      500000
+
+6 rows selected.
+
+SQL> select * from borrow593;
+
+CNAME      LOANNO
+---------- ----------
+Joyce      l1
+Frank      l2
+Priya      l3
+Steve      l4
+Vamsi      l5
+Sharma     l6
+
+6 rows selected.
+
+SQL> 

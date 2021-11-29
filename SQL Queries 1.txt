@@ -1,0 +1,234 @@
+
+SQL> select loanno from loan593 where bname = 'PerryRidge';
+
+LOANNO
+----------
+l13
+l14
+l4
+
+SQL> select loanno from loan593 where bname = 'RedWood' and amount > 30000;
+
+LOANNO
+----------
+l15
+l16
+l5
+
+
+SQL> select loanno from loan593 where bname = 'RedWood' and amount > 300000;
+
+no rows selected
+
+SQL> select * from loan593 where bname = 'RedWood';
+
+LOANNO     BNAME          AMOUNT
+---------- ---------- ----------
+l15        RedWood         95025
+l16        RedWood         97462
+l5         RedWood        200000
+
+SQL> select loanno from loan593 where bname = 'RedWood' and amount < 100000;
+
+LOANNO
+----------
+l15
+l16
+
+SQL> select cname from cust593 where cname like 'A%';
+
+CNAME
+----------
+Adarsh
+Alex
+Archie
+Arvind
+
+SQL> select cname from cust593 where cname like '%a';
+
+CNAME
+----------
+Camila
+Nara
+Panda
+Priya
+Sharma
+Sinaloa
+Varma
+
+7 rows selected.
+
+SQL> select cname from cust593 where cname like '_%a';
+
+CNAME
+----------
+Camila
+Nara
+Panda
+Priya
+Sharma
+Sinaloa
+Varma
+
+7 rows selected.
+
+SQL> select cname from cust593 where cname like '_%r';
+
+CNAME
+----------
+Bhaskar
+
+SQL> select cname from cust593 where cname like '_r%';
+
+CNAME
+----------
+Archie
+Arvind
+DrPark
+Frank
+Priya
+
+SQL> select cname from cust593 where cname like '__r%';
+
+CNAME
+----------
+Markus
+Nara
+Sarron
+Surge
+Varma
+
+SQL> select * from acc593;
+
+ACCNO      BNAME             BAL
+---------- ---------- ----------
+a7         Brichton        86249
+a8         Brichton        36985
+a9         DownTown        75369
+a10        DownTown        25852
+a11        Miamus          15995
+a12        Miamus         248624
+a13        PerryRidge      20000
+a14        PerryRidge      45654
+a15        RedWood         74123
+a16        RedWood         96321
+a17        RoundHill       85246
+
+ACCNO      BNAME             BAL
+---------- ---------- ----------
+a18        RoundHill       45682
+a1         Brichton        12419
+a2         DownTown         7894
+a3         Miamus          12345
+a4         PerryRidge      54321
+a5         RedWood         25896
+a6         RoundHill      654321
+
+18 rows selected.
+
+SQL> select accno, bal from acc593 order by bal desc;
+
+ACCNO             BAL
+---------- ----------
+a6             654321
+a12            248624
+a16             96321
+a7              86249
+a17             85246
+a9              75369
+a15             74123
+a4              54321
+a18             45682
+a14             45654
+a8              36985
+
+ACCNO             BAL
+---------- ----------
+a5              25896
+a10             25852
+a13             20000
+a11             15995
+a1              12419
+a3              12345
+a2               7894
+
+18 rows selected.
+
+SQL> select accno, bal from acc593 order by bal;
+
+ACCNO             BAL
+---------- ----------
+a2               7894
+a3              12345
+a1              12419
+a11             15995
+a13             20000
+a10             25852
+a5              25896
+a8              36985
+a14             45654
+a18             45682
+a4              54321
+
+ACCNO             BAL
+---------- ----------
+a15             74123
+a9              75369
+a17             85246
+a7              86249
+a16             96321
+a12            248624
+a6             654321
+
+18 rows selected.
+
+SQL> select loanno from loan593 where amount between 50000 and 100000;
+
+LOANNO
+----------
+l7
+l14
+l15
+l16
+l17
+l2
+l3
+
+7 rows selected.
+
+SQL> select bname, avg(bal) from acc593 group by bname;
+
+BNAME        AVG(BAL)
+---------- ----------
+RedWood    65446.6667
+Brichton   45217.6667
+RoundHill  261749.667
+Miamus     92321.3333
+DownTown   36371.6667
+PerryRidge 39991.6667
+
+6 rows selected.
+
+SQL> select bname, avg(bal) from acc593 group by bname having avg(bal) > 40000;
+
+BNAME        AVG(BAL)
+---------- ----------
+RedWood    65446.6667
+Brichton   45217.6667
+RoundHill  261749.667
+Miamus     92321.3333
+
+SQL> select bname, avg(bal) from acc593 group by bname order by avg(bal);
+
+BNAME        AVG(BAL)
+---------- ----------
+DownTown   36371.6667
+PerryRidge 39991.6667
+Brichton   45217.6667
+RedWood    65446.6667
+Miamus     92321.3333
+RoundHill  261749.667
+
+6 rows selected.
+
+SQL> 

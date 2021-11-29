@@ -1,0 +1,96 @@
+SQL> create table student593(sid varchar2(10), sname varchar2(10), sdob date);
+
+Table created.
+
+SQL> drop table student593;
+
+Table dropped.
+
+SQL> create table student593(sid varchar2(10), sname varchar2(10), sdob date, primary k7ey(sid));
+
+owner Table created.
+
+SQL> create table book593(bid varchar2(10), bname varchar2(10), bprice number(5,2), primary key(bid));
+
+Table created.
+
+SQL> create table transaction593(tid varchar2(10), sid varchar2(10), bid varchar2(10), tdate date, primary key(tid), foreign key(sid) references student593, foreign key(bid) references book593);
+
+Table created.
+
+SQL> insert into student593 values('&sid', '&sname', '&sbod');
+Enter value for sid: S1
+Enter value for sname: A
+Enter value for sbod: 01 Jan 2002
+old   1: insert into student593 values('&sid', '&sname', '&sbod')
+new   1: insert into student593 values('S1', 'A', '01 Jan 2002')
+
+1 row created.
+
+SQL> /
+Enter value for sid: S2
+Enter value for sname: B
+Enter value for sbod: 02 Jan 2002
+old   1: insert into student593 values('&sid', '&sname', '&sbod')
+new   1: insert into student593 values('S2', 'B', '02 Jan 2002')
+
+1 row created.
+
+SQL> select * from student593;
+
+SID        SNAME      SDOB
+---------- ---------- ---------
+S1         A          01-JAN-02
+S2         B          02-JAN-02
+
+SQL> insert into book593 values('&bid', '&bname', &bprice);
+Enter value for bid: B1
+Enter value for bname: ABC
+Enter value for bprice: 100.00
+old   1: insert into book593 values('&bid', '&bname', &bprice)
+new   1: insert into book593 values('B1', 'ABC', 100.00)
+
+1 row created.
+
+SQL> /
+Enter value for bid: B2
+Enter value for bname: XYZ
+Enter value for bprice: 199.99
+old   1: insert into book593 values('&bid', '&bname', &bprice)
+new   1: insert into book593 values('B2', 'XYZ', 199.99)
+
+1 row created.
+
+SQL> select * from book593;
+
+BID        BNAME          BPRICE
+---------- ---------- ----------
+B1         ABC               100
+B2         XYZ            199.99
+
+SQL> insert into transaction593 values('&tid', '&sid', '&bid', '&tdate');
+Enter value for tid: T1
+Enter value for sid: S1
+Enter value for bid: B1
+Enter value for tdate: 01 Nov 2021
+old   1: insert into transaction593 values('&tid', '&sid', '&bid', '&tdate')
+new   1: insert into transaction593 values('T1', 'S1', 'B1', '01 Nov 2021')
+
+1 row created.
+
+SQL> /
+Enter value for tid: T2
+Enter value for sid: S2
+Enter value for bid: B2
+Enter value for tdate: 02 Nov 2021
+old   1: insert into transaction593 values('&tid', '&sid', '&bid', '&tdate')
+new   1: insert into transaction593 values('T2', 'S2', 'B2', '02 Nov 2021')
+
+1 row created.
+
+SQL> select * from transaction593;
+
+TID        SID        BID        TDATE
+---------- ---------- ---------- ---------
+T1         S1         B1         01-NOV-21
+T2         S2         B2         02-NOV-21

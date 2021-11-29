@@ -1,0 +1,200 @@
+
+SQL> create table br593(bid varchar2(10), bname varchar2(10), bloc varchar2(5), primary key(bid));
+
+Table created.
+
+SQL> create table st593(sid varchar2(10), sname varchar2(10), sdob date, bid varchar
+ey (sid), foreign key (bid) references br593);
+
+Table created.
+
+SQL> dec st593;
+SP2-0042: unknown command "dec st593" - rest of line ignored.
+SQL> desc st593;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ SID                                       NOT NULL VARCHAR2(10)
+ SNAME                                              VARCHAR2(10)
+ SDOB                                               DATE
+ BID                                                VARCHAR2(10)
+
+SQL> insert into br593 values('&bid', '&bname', '&bloc');
+Enter value for bid: 1
+Enter value for bname: cse
+Enter value for bloc: b1
+old   1: insert into br593 values('&bid', '&bname', '&bloc')
+new   1: insert into br593 values('1', 'cse', 'b1')
+
+1 row created.
+
+SQL> /
+Enter value for bid: 2
+Enter value for bname: csbs
+Enter value for bloc: b2
+old   1: insert into br593 values('&bid', '&bname', '&bloc')
+new   1: insert into br593 values('2', 'csbs', 'b2')
+
+1 row created.
+
+SQL> /
+Enter value for bid: 3
+Enter value for bname: cst
+Enter value for bloc: b3
+old   1: insert into br593 values('&bid', '&bname', '&bloc')
+new   1: insert into br593 values('3', 'cst', 'b3')
+
+1 row created.
+
+SQL> /
+Enter value for bid: 4
+Enter value for bname: eee
+Enter value for bloc: b4
+old   1: insert into br593 values('&bid', '&bname', '&bloc')
+new   1: insert into br593 values('4', 'eee', 'b4')
+
+1 row created.
+
+SQL> /
+Enter value for bid: 5
+Enter value for bname: ece
+Enter value for bloc: b5
+old   1: insert into br593 values('&bid', '&bname', '&bloc')
+new   1: insert into br593 values('5', 'ece', 'b5')
+
+1 row created.
+
+SQL> /
+Enter value for bid: 6
+Enter value for bname: mec
+Enter value for bloc: b6
+old   1: insert into br593 values('&bid', '&bname', '&bloc')
+new   1: insert into br593 values('6', 'mec', 'b6')
+
+1 row created.
+
+SQL> /
+Enter value for bid: 7
+Enter value for bname: cv
+Enter value for bloc: b7
+old   1: insert into br593 values('&bid', '&bname', '&bloc')
+new   1: insert into br593 values('7', 'cv', 'b7')
+
+1 row created.
+
+SQL> select * from br593;
+
+BID        BNAME      BLOC
+---------- ---------- -----
+1          cse        b1
+2          csbs       b2
+3          cst        b3
+4          eee        b4
+5          ece        b5
+6          mec        b6
+7          cv         b7
+
+7 rows selected.
+
+SQL> insert into st593 values('&sid', '&sname', '&sdob', '&bid');
+Enter value for sid: 201
+Enter value for sname: a
+Enter value for sdob: 27 JAN 2002
+Enter value for bid: 1
+old   1: insert into st593 values('&sid', '&sname', '&sdob', '&bid')
+new   1: insert into st593 values('201', 'a', '27 JAN 2002', '1')
+
+1 row created.
+
+SQL> select * from st593;
+
+SID        SNAME      SDOB      BID
+---------- ---------- --------- ----------
+201        a          27-JAN-02 1 	
+
+SQL> insert into st593 values('&sid', '&same', '&sdob', '&bid');
+Enter value for sid: 2
+Enter value for same: b
+Enter value for sdob: 29 FEB 2004
+Enter value for bid: 1
+old   1: insert into st593 values('&sid', '&same', '&sdob', '&bid')
+new   1: insert into st593 values('2', 'b', '29 FEB 2004', '1')
+
+1 row created.
+
+SQL> /
+Enter value for sid: 3
+Enter value for same: c
+Enter value for sdob: 36 SEP 2006
+Enter value for bid: 2
+old   1: insert into st593 values('&sid', '&same', '&sdob', '&bid')
+new   1: insert into st593 values('3', 'c', '36 SEP 2006', '2')
+insert into st593 values('3', 'c', '36 SEP 2006', '2')
+                                   *
+ERROR at line 1:
+ORA-01847: day of month must be between 1 and last day of month
+
+
+SQL> /
+Enter value for sid: 203
+Enter value for same: C
+Enter value for sdob: 4 SEP 2001
+Enter value for bid: 2
+old   1: insert into st593 values('&sid', '&same', '&sdob', '&bid')
+new   1: insert into st593 values('203', 'C', '4 SEP 2001', '2')
+
+1 row created.
+
+
+SQL> select * from st593;
+
+SID        SNAME      SDOB      BID
+---------- ---------- --------- ----------
+201        a          27-JAN-02 1
+202        b          29-FEB-04 1
+203        C          04-SEP-01 2
+
+
+SQL> update st593 set sname = '&sname' where sname = 'a';
+Enter value for sname: A
+old   1: update st593 set sname = '&sname' where sname = 'a'
+new   1: update st593 set sname = 'A' where sname = 'a'
+
+1 row updated.
+
+SQL> select * from st593;
+
+SID        SNAME      SDOB      BID
+---------- ---------- --------- ----------
+201        A          27-JAN-02 1
+202        b          29-FEB-04 1
+203        C          04-SEP-01 2
+
+
+SQL> update st593 set sname =  '&sname' where sname = '&sname';
+Enter value for sname: B
+Enter value for sname: b
+old   1: update st593 set sname =  '&sname' where sname = '&sname'
+new   1: update st593 set sname =  'B' where sname = 'b'
+
+1 row updated.
+
+SQL> select * from st593;
+
+SID        SNAME      SDOB      BID
+---------- ---------- --------- ----------
+201        A          27-JAN-02 1
+202        B          29-FEB-04 1
+203        C          04-SEP-01 2
+
+ SQL> drop table br593;
+drop table br593
+           *
+ERROR at line 1:
+ORA-02449: unique/primary keys in table referenced by foreign keys
+
+
+SQL> drop table st593;
+
+Table dropped.
+
+SQL> drop table br593;

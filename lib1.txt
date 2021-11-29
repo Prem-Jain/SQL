@@ -1,0 +1,181 @@
+	
+SQL> create table st593(sid varchar2(10), sname varchar2(10), sdob date, primary key (sid));
+
+Table created.
+
+SQL> create table b593(bid varchar2(10), bname varchar2(10), bprice number(6, 2), primary key(bid));
+
+
+Table created.
+
+SQL> create table t593(tid varchar2(10), sid varchar2(10), bid varchar2(10), tdate date, primary key
+(tid), foreign key (sid) references st593, foreign key (bid) references b593);
+
+Table created.
+
+SQL> desc t593;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ TID                                       NOT NULL VARCHAR2(10)
+ SID                                                VARCHAR2(10)
+ BID                                                VARCHAR2(10)
+ TDATE                                              DATE
+
+SQL> insert into t593 values('&tid', '&sid', '&bid', '&tdate');
+Enter value for tid: 1
+Enter value for sid: A
+Enter value for bid: 123
+Enter value for tdate: 1 NOV 2021
+old   1: insert into t593 values('&tid', '&sid', '&bid', '&tdate')
+new   1: insert into t593 values('1', 'A', '123', '1 NOV 2021')
+insert into t593 values('1', 'A', '123', '1 NOV 2021')
+*
+ERROR at line 1:
+ORA-02291: integrity constraint (SCOTT.SYS_C005219) violated - parent key not
+found
+
+
+SQL> insert into st593 values('&sid', '&sname', '&sdob');
+Enter value for sid: 1
+Enter value for sname: A
+Enter value for sdob: 29 OCT 2002
+old   1: insert into st593 values('&sid', '&sname', '&sdob')
+new   1: insert into st593 values('1', 'A', '29 OCT 2002')
+
+1 row created.
+
+SQL> /
+Enter value for sid: 2
+Enter value for sname: B
+Enter value for sdob: 30 OCT 2002
+old   1: insert into st593 values('&sid', '&sname', '&sdob')
+new   1: insert into st593 values('2', 'B', '30 OCT 2002')
+
+1 row created.
+
+SQL> /
+Enter value for sid: 3
+Enter value for sname: C
+Enter value for sdob: 31 OCT 2002
+old   1: insert into st593 values('&sid', '&sname', '&sdob')
+new   1: insert into st593 values('3', 'C', '31 OCT 2002')
+
+1 row created.
+
+SQL> select * from st593;
+
+SID        SNAME      SDOB
+---------- ---------- ---------
+1          A          29-OCT-02
+2          B          30-OCT-02
+3          C          31-OCT-02
+
+
+SQL> insert into b593 values ('&bid', '&bname', &bprice);
+Enter value for bid: 1
+Enter value for bname: qwerty
+Enter value for bprice: 999.99
+old   1: insert into b593 values ('&bid', '&bname', &bprice)
+new   1: insert into b593 values ('1', 'qwerty', 999.99)
+
+1 row created.
+
+SQL> /
+Enter value for bid: 2
+Enter value for bname: wasd
+Enter value for bprice: 546.21
+old   1: insert into b593 values ('&bid', '&bname', &bprice)
+new   1: insert into b593 values ('2', 'wasd', 546.21)
+
+1 row created.
+
+SQL> /
+Enter value for bid: 3
+Enter value for bname: rdx
+Enter value for bprice: 64.65
+old   1: insert into b593 values ('&bid', '&bname', &bprice)
+new   1: insert into b593 values ('3', 'rdx', 64.65)
+
+1 row created.
+
+SQL> select * from b593;
+
+BID        BNAME          BPRICE
+---------- ---------- ----------
+1          qwerty         999.99
+2          wasd           546.21
+3          rdx             64.65 
+
+SQL> insert into t593 values ('&tid', '&sid', '&bid', '&tdate');
+Enter value for tid: 1
+Enter value for sid: 1
+Enter value for bid: 1
+Enter value for tdate: 1 NOV 2021
+old   1: insert into t593 values ('&tid', '&sid', '&bid', '&tdate')
+new   1: insert into t593 values ('1', '1', '1', '1 NOV 2021')
+
+1 row created.
+
+SQL> select * from t593;
+
+TID        SID        BID        TDATE
+---------- ---------- ---------- ---------
+1          1          1          01-NOV-21
+
+
+SQL> update t593 set sid = 2 Where sid = 1;
+
+1 row updated.
+
+SQL> select * from t593;
+
+TID        SID        BID        TDATE
+---------- ---------- ---------- ---------
+1          2          1          01-NOV-21
+
+SQL> update st593 set sid = 10 where sid = 1;
+
+1 row updated.
+
+SQL> select * from t593;
+
+TID        SID        BID        TDATE
+---------- ---------- ---------- ---------
+1          2          1          01-NOV-21
+
+SQL> update st593 set sid = 11 where sid = 2;
+update st593 set sid = 11 where sid = 2
+*
+ERROR at line 1:
+ORA-02292: integrity constraint (SCOTT.SYS_C005218) violated - child record
+found
+
+
+SQL> select * from st593;
+
+SID        SNAME      SDOB
+---------- ---------- ---------
+10         A          29-OCT-02
+2          B          30-OCT-02
+3          C          31-OCT-02
+
+SQL> drop table st593;
+drop table st593
+           *
+ERROR at line 1:
+ORA-02449: unique/primary keys in table referenced by foreign keys
+
+
+SQL> drop table t593;
+
+Table dropped.
+
+SQL> drop table b593;
+
+Table dropped.
+
+SQL> drop table st593;
+
+Table dropped.
+
+SQL> 

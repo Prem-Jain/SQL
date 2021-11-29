@@ -1,0 +1,352 @@
+
+SQL> (select cname from deposit593) union (select cname from borrow593);
+
+CNAME
+----------
+Adarsh
+Alex
+Archie
+Arvind
+Betty
+Bhaskar
+Camila
+Chapito
+Charlie
+David
+DonGone
+
+CNAME
+----------
+DrPark
+Frank
+Inamul
+JohnDoe
+Joyce
+Juarez
+Markus
+Mathew
+Maxine
+Nara
+Panda
+
+CNAME
+----------
+Priya
+Raj
+Rick
+Rufus
+Sammy
+Sarron
+Sharma
+Shawn
+Sinaloa
+Steve
+Surge
+
+CNAME
+----------
+Vamsi
+VamsiK
+Varma
+
+36 rows selected.
+
+SQL> (select cname from deposit593) intersect (select cname from borrow593);
+
+no rows selected
+
+SQL> (select cname from cust593) minus (select cname from deposit593);
+
+CNAME
+----------
+Betty
+Camila
+Charlie
+DonGone
+DrPark
+Frank
+Inamul
+Joyce
+Markus
+Priya
+Rufus
+
+CNAME
+----------
+Sammy
+Sarron
+Sharma
+Sinaloa
+Steve
+Vamsi
+VamsiK
+
+18 rows selected.
+
+SQL> select avg(bal), bname from acc593;
+select avg(bal), bname from acc593
+                 *
+ERROR at line 1:
+ORA-00937: not a single-group group function
+
+
+SQL> select avg(bal) from acc593;
+
+  AVG(BAL)
+----------
+90183.1111
+
+SQL> select bname, max(bal) from acc593;
+select bname, max(bal) from acc593
+       *
+ERROR at line 1:
+ORA-00937: not a single-group group function
+
+
+SQL> select max(bal) from acc593;
+
+  MAX(BAL)
+----------
+    654321
+
+SQL> select min(bal) from acc593;
+
+  MIN(BAL)
+----------
+      7894
+
+SQL> select sum(bal) from acc593;
+
+  SUM(BAL)
+----------
+   1623296
+
+SQL> select count(accno) from acc593;
+
+COUNT(ACCNO)
+------------
+          18
+
+TID        SID        BID        TDATE
+---------- ---------- ---------- ---------
+T1         S1         B1         01-NOV-21
+T2         S2         B2         02-NOV-21
+
+SQL> select * from book593;
+
+BID        BNAME          BPRICE
+---------- ---------- ----------
+B1         ABC               100
+B2         XYZ            199.99
+
+SQL> select * from student593;
+
+SID        SNAME      SDOB
+---------- ---------- ---------
+S1         A          01-JAN-02
+S2         B          02-JAN-02
+
+SQL> insert into student593 values('&sid', '&sname', '&sdob');
+Enter value for sid: S3
+Enter value for sname: C
+Enter value for sdob: 03 Jan 2002
+old   1: insert into student593 values('&sid', '&sname', '&sdob')
+new   1: insert into student593 values('S3', 'C', '03 Jan 2002')
+
+1 row created.
+
+SQL> /
+Enter value for sid: S4
+Enter value for sname: D
+Enter value for sdob: 04 Jan 2002
+old   1: insert into student593 values('&sid', '&sname', '&sdob')
+new   1: insert into student593 values('S4', 'D', '04 Jan 2002')
+
+1 row created.
+
+SQL> /
+Enter value for sid: S5
+Enter value for sname: E
+Enter value for sdob: 05 Jan 2002
+old   1: insert into student593 values('&sid', '&sname', '&sdob')
+new   1: insert into student593 values('S5', 'E', '05 Jan 2002')
+
+1 row created.
+
+SQL> /
+Enter value for sid: S6
+Enter value for sname: F
+Enter value for sdob: 06 Jan 2002
+old   1: insert into student593 values('&sid', '&sname', '&sdob')
+new   1: insert into student593 values('S6', 'F', '06 Jan 2002')
+
+1 row created.
+
+SQL> insert into book593 values('&bid', '&bname', '&bprice');
+Enter value for bid: B3
+Enter value for bname: IGF
+Enter value for bprice: 500
+old   1: insert into book593 values('&bid', '&bname', '&bprice')
+new   1: insert into book593 values('B3', 'IGF', '500')
+
+1 row created.
+
+SQL> /
+Enter value for bid: B4
+Enter value for bname: ETC
+Enter value for bprice: 300
+old   1: insert into book593 values('&bid', '&bname', '&bprice')
+new   1: insert into book593 values('B4', 'ETC', '300')
+
+1 row created.
+
+SQL> /
+Enter value for bid: B5
+Enter value for bname: PVT
+Enter value for bprice: 200
+old   1: insert into book593 values('&bid', '&bname', '&bprice')
+new   1: insert into book593 values('B5', 'PVT', '200')
+
+1 row created.
+
+SQL> /
+Enter value for bid: B6
+Enter value for bname: LTD
+Enter value for bprice: 250
+old   1: insert into book593 values('&bid', '&bname', '&bprice')
+new   1: insert into book593 values('B6', 'LTD', '250')
+
+1 row created.
+
+SQL> insert into transaction593 values('&tid', '&sid', '&bid', '&tdate');
+Enter value for tid: T3
+Enter value for sid: S2
+Enter value for bid: B6
+Enter value for tdate: 01 Nov 2021
+old   1: insert into transaction593 values('&tid', '&sid', '&bid', '&tdate')
+new   1: insert into transaction593 values('T3', 'S2', 'B6', '01 Nov 2021')
+
+1 row created.
+
+SQL> /
+Enter value for tid: T4
+Enter value for sid: S6
+Enter value for bid: 10 Nov 2021
+Enter value for tdate: agsxgasxgasg
+old   1: insert into transaction593 values('&tid', '&sid', '&bid', '&tdate')
+new   1: insert into transaction593 values('T4', 'S6', '10 Nov 2021', 'agsxgasxgasg')
+insert into transaction593 values('T4', 'S6', '10 Nov 2021', 'agsxgasxgasg')
+                                              *
+ERROR at line 1:
+ORA-12899: value too large for column "SCOTT"."TRANSACTION593"."BID" (actual:
+11, maximum: 10)
+
+
+SQL> /
+Enter value for tid: T4
+Enter value for sid: S6
+Enter value for bid: B1
+Enter value for tdate: 10 Nov 2021
+old   1: insert into transaction593 values('&tid', '&sid', '&bid', '&tdate')
+new   1: insert into transaction593 values('T4', 'S6', 'B1', '10 Nov 2021')
+
+1 row created.
+
+SQL> /
+Enter value for tid: T5
+Enter value for sid: S5
+Enter value for bid: B6
+Enter value for tdate: 11 Nov 2021
+old   1: insert into transaction593 values('&tid', '&sid', '&bid', '&tdate')
+new   1: insert into transaction593 values('T5', 'S5', 'B6', '11 Nov 2021')
+
+1 row created.
+
+SQL> /
+Enter value for tid: T6
+Enter value for sid: S2
+Enter value for bid: B5
+Enter value for tdate: 12 Nov 2021
+old   1: insert into transaction593 values('&tid', '&sid', '&bid', '&tdate')
+new   1: insert into transaction593 values('T6', 'S2', 'B5', '12 Nov 2021')
+
+1 row created.
+
+
+SQL> select * from transaction593;
+
+TID        SID        BID        TDATE
+---------- ---------- ---------- ---------
+T1         S1         B1         01-NOV-21
+T2         S2         B2         02-NOV-21
+T3         S2         B6         01-NOV-21
+T4         S6         B1         10-NOV-21
+T5         S5         B6         11-NOV-21
+T6         S2         B5         12-NOV-21
+
+6 rows selected.
+
+SQL> select student593.sid, sname, transaction593.bid, transaction593.tdate from student593 inner jo
+in transaction593 on student593.sid = transaction593.sid;
+
+SID        SNAME      BID        TDATE
+---------- ---------- ---------- ---------
+S1         A          B1         01-NOV-21
+S2         B          B2         02-NOV-21
+S2         B          B6         01-NOV-21
+S6         F          B1         10-NOV-21
+S5         E          B6         11-NOV-21
+S2         B          B5         12-NOV-21
+
+6 rows selected.
+
+SQL> select student593.sid, sname, tdate from student593 left join transaction593 on student593.sid 
+= transaction593.sid;
+
+SID        SNAME      TDATE
+---------- ---------- ---------
+S1         A          01-NOV-21
+S2         B          12-NOV-21
+S2         B          02-NOV-21
+S2         B          01-NOV-21
+S3         C
+S4         D
+S5         E          11-NOV-21
+S6         F          10-NOV-21
+
+8 rows selected.
+
+SQL> select sid, book593.bname, tdate from transaction593 right join book593 on transaction593.bid =
+ book593.bid;
+
+SID        BNAME      TDATE
+---------- ---------- ---------
+S1         ABC        01-NOV-21
+S6         ABC        10-NOV-21
+S2         XYZ        02-NOV-21
+           IGF
+           ETC
+S2         PVT        12-NOV-21
+S5         LTD        11-NOV-21
+S2         LTD        01-NOV-21
+
+8 rows selected.
+
+SQL> select student593.sid, student593.sname, book593.bname, transaction593.tdate from student593 fu
+ll join transaction593 on student593.sid = transaction593.sid full join book593 on transaction593.bi
+d = book593.bid;
+
+SID        SNAME      BNAME      TDATE
+---------- ---------- ---------- ---------
+S1         A          ABC        01-NOV-21
+S2         B          PVT        12-NOV-21
+S2         B          XYZ        02-NOV-21
+S2         B          LTD        01-NOV-21
+S3         C
+S4         D
+S5         E          LTD        11-NOV-21
+S6         F          ABC        10-NOV-21
+                      IGF
+                      ETC
+
+10 rows selected.

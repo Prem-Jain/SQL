@@ -1,0 +1,87 @@
+
+SQL> create table lib593(bname varchar2(5), bid varchar2(4), price number(5));
+
+Table created.
+
+SQL> insert into lib593 values('&bname', '&bid', &bprice);
+
+Enter value for bname: A
+Enter value for bid: 1000
+Enter value for bprice: 150
+old   1: insert into lib593 values('&bname', '&bid', &bprice)
+new   1: insert into lib593 values('A', '1000', 150)
+
+1 row created.
+
+SQL> /
+Enter value for bname: B
+Enter value for bid: 1001
+Enter value for bprice: 199
+old   1: insert into lib593 values('&bname', '&bid', &bprice)
+new   1: insert into lib593 values('B', '1001', 199)
+
+1 row created.
+
+SQL> /
+Enter value for bname: C
+Enter value for bid: 1002
+Enter value for bprice: 99
+old   1: insert into lib593 values('&bname', '&bid', &bprice)
+new   1: insert into lib593 values('C', '1002', 99)
+
+1 row created.
+
+SQL> /
+Enter value for bname: D
+Enter value for bid: 1004
+Enter value for bprice: 49
+old   1: insert into lib593 values('&bname', '&bid', &bprice)
+new   1: insert into lib593 values('D', '1004', 49)
+
+1 row created.
+
+SQL> /
+Enter value for bname: E
+Enter value for bid: 1004
+Enter value for bprice: 200
+old   1: insert into lib593 values('&bname', '&bid', &bprice)
+new   1: insert into lib593 values('E', '1004', 200)
+
+1 row created.
+
+SQL> select * from lib593;
+
+BNAME BID       PRICE
+----- ---- ----------
+A     1000        150
+B     1001        199
+C     1002         99
+D     1004         49
+E     1004        200
+
+SQL> 
+SQL> delete from lib593 where bid = '1004';
+
+2 rows delete.
+
+SQL> select bname from lib593 where price >100;
+
+BNAME
+-----
+A
+B
+
+SQL> select bname from lib593 where price >100;
+
+BNAME
+-----
+A
+B
+
+SQL> delete from lib593 where bname = 'A';
+
+1 row deleted.
+
+SQL> drop table lib593;
+
+Table dropped.

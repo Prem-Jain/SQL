@@ -1,0 +1,193 @@
+SQL> create table dept593(did varchar2(10), dname varchar2(10), dloc varchar2(10), primary key (did));
+
+Table created.
+
+SQL> create table st593(sid varchar2(10), sname varchar2(10), sdob date, did varchar2(10), primary key (sid), foreign key (did) references dept593);
+
+Table created.
+
+SQL> create table course593(cid varchar2(10), cname varchar2(10), ctime varchar2(10), did varchar2(10), primary key (cid), foreign key(did) references dept593);
+
+Table created.
+
+SQL> create table result593(rid varchar2(10), sid varchar2(10), cid varchar2(10), marks number(5,2), primary key(rid), foreign key(sid) references st593, foreign key(cid) references course593);
+
+Table created.
+
+SQL> insert into dept593 values('&did', '&dname', '&dloc');
+Enter value for did: 1
+Enter value for dname: CSE
+Enter value for dloc: BLOCK1
+old   1: insert into dept593 values('&did', '&dname', '&dloc')
+new   1: insert into dept593 values('1', 'CSE', 'BLOCK1')
+
+1 row created.
+
+SQL> /
+Enter value for did: 2
+Enter value for dname: EEE
+Enter value for dloc: BLOCK2
+old   1: insert into dept593 values('&did', '&dname', '&dloc')
+new   1: insert into dept593 values('2', 'EEE', 'BLOCK2')
+
+1 row created.
+
+SQL> select * from dept593;
+
+DID        DNAME      DLOC
+---------- ---------- ----------
+1          CSE        BLOCK1
+2          EEE        BLOCK2
+SQL> update dept593 set did = 'D1' where did = 1;
+
+1 row updated.
+
+SQL> update dept593 set did = 'D2' where did = 2;
+update dept593 set did = 'D2' where did = 2
+                                    *
+ERROR at line 1:
+ORA-01722: invalid number
+
+SQL> select * from dept593;
+
+DID        DNAME      DLOC
+---------- ---------- ----------
+D1         CSE        BLOCK1
+2          EEE        BLOCK2
+
+SQL> update dept593 set did = 'D2' where did = '2';
+
+1 row updated.
+
+SQL> select * from dept593;
+
+DID        DNAME      DLOC
+---------- ---------- ----------
+D1         CSE        BLOCK1
+D2         EEE        BLOCK2
+
+
+SQL> insert into st593 values('&sid', '&sname', '&sdob', '&did');
+Enter value for sid: S1
+Enter value for sname: A
+Enter value for sdob: 01 Jan 2002
+Enter value for did: D1
+old   1: insert into st593 values('&sid', '&sname', '&sdob', '&did')
+new   1: insert into st593 values('S1', 'A', '01 Jan 2002', 'D1')
+
+1 row created.
+
+SQL> /
+Enter value for sid: S2
+Enter value for sname: B
+Enter value for sdob: 02 Jan 2002
+Enter value for did: D1
+old   1: insert into st593 values('&sid', '&sname', '&sdob', '&did')
+new   1: insert into st593 values('S2', 'B', '02 Jan 2002', 'D1')
+
+1 row created.
+
+SQL> /
+Enter value for sid: S3
+Enter value for sname: C
+Enter value for sdob: 03 Jan 2002
+Enter value for did: D2
+old   1: insert into st593 values('&sid', '&sname', '&sdob', '&did')
+new   1: insert into st593 values('S3', 'C', '03 Jan 2002', 'D2')
+
+1 row created.
+
+SQL> /
+Enter value for sid: S4
+Enter value for sname: D
+Enter value for sdob: 04 Jan 2002
+Enter value for did: D2
+old   1: insert into st593 values('&sid', '&sname', '&sdob', '&did')
+new   1: insert into st593 values('S4', 'D', '04 Jan 2002', 'D2')
+
+1 row created.
+
+SQL> select * from st593;
+
+SID        SNAME      SDOB      DID
+---------- ---------- --------- ----------
+S1         A          01-JAN-02 D1
+S2         B          02-JAN-02 D1
+S3         C          03-JAN-02 D2
+S4         D          04-JAN-02 D2
+
+SQL> insert into course593 values('&cid', '&cname', '&cname', '&did');
+Enter value for cid: C1
+Enter value for cname: EXAM1
+Enter value for cname: 3Hrs
+Enter value for did: D1
+old   1: insert into course593 values('&cid', '&cname', '&cname', '&did')
+new   1: insert into course593 values('C1', 'EXAM1', '3Hrs', 'D1')
+
+1 row created.
+
+SQL> /
+Enter value for cid: C2
+Enter value for cname: EXAM2
+Enter value for cname: 3Hrs
+Enter value for did: D2
+old   1: insert into course593 values('&cid', '&cname', '&cname', '&did')
+new   1: insert into course593 values('C2', 'EXAM2', '3Hrs', 'D2')
+
+1 row created.
+
+SQL> select * from course593;
+
+CID        CNAME      CTIME      DID
+---------- ---------- ---------- ----------
+C1         EXAM1      3Hrs       D1
+C2         EXAM2      3Hrs       D2
+
+SQL> insert into result593 values('&rid', '&sid', '&cid', &marsks);
+Enter value for rid: R1
+Enter value for sid: S1
+Enter value for cid: C1
+Enter value for marsks: 98
+old   1: insert into result593 values('&rid', '&sid', '&cid', &marsks)
+new   1: insert into result593 values('R1', 'S1', 'C1', 98)
+
+1 row created.
+
+SQL> /
+Enter value for rid: R2
+Enter value for sid: S2
+Enter value for cid: C1
+Enter value for marsks: 95.50
+old   1: insert into result593 values('&rid', '&sid', '&cid', &marsks)
+new   1: insert into result593 values('R2', 'S2', 'C1', 95.50)
+
+1 row created.
+
+SQL> /
+Enter value for rid: R3
+Enter value for sid: S3
+Enter value for cid: C2
+Enter value for marsks: 88.02
+old   1: insert into result593 values('&rid', '&sid', '&cid', &marsks)
+new   1: insert into result593 values('R3', 'S3', 'C2', 88.02)
+
+1 row created.
+
+SQL> /
+Enter value for rid: R4
+Enter value for sid: S4
+Enter value for cid: C2
+Enter value for marsks: 54.78
+old   1: insert into result593 values('&rid', '&sid', '&cid', &marsks)
+new   1: insert into result593 values('R4', 'S4', 'C2', 54.78)
+
+1 row created.
+
+SQL> select * from result593;
+
+RID        SID        CID             MARKS
+---------- ---------- ---------- ----------
+R1         S1         C1                 98
+R2         S2         C1               95.5
+R3         S3         C2              88.02
+R4         S4         C2              54.78

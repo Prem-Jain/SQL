@@ -1,0 +1,195 @@
+SQL> create table emp593(eid varchar2(10), ename varchar2(10), esal number(10));
+
+Table created.
+
+SQL> insert into emp593 values('&eid', '&ename', &esal);
+Enter value for eid: 1
+Enter value for ename: A
+Enter value for esal: 350000
+old   1: insert into emp593 values('&eid', '&ename', &esal)
+new   1: insert into emp593 values('1', 'A', 350000)
+
+1 row created.
+
+SQL> /
+Enter value for eid: 2
+Enter value for ename: B
+Enter value for esal: 450000
+old   1: insert into emp593 values('&eid', '&ename', &esal)
+new   1: insert into emp593 values('2', 'B', 450000)
+
+1 row created.
+
+SQL> 3
+SP2-0226: Invalid line number
+SQL> C
+SP2-0025: Invalid change string.
+SQL> /
+Enter value for eid: 3
+Enter value for ename: C
+Enter value for esal: 500000
+old   1: insert into emp593 values('&eid', '&ename', &esal)
+new   1: insert into emp593 values('3', 'C', 500000)
+
+1 row created.
+
+SQL> /
+Enter value for eid: 4
+Enter value for ename: D
+Enter value for esal: 425000
+old   1: insert into emp593 values('&eid', '&ename', &esal)
+new   1: insert into emp593 values('4', 'D', 425000)
+
+1 row created.
+
+SQL> /
+Enter value for eid: 5
+Enter value for ename: E
+Enter value for esal: 525000
+old   1: insert into emp593 values('&eid', '&ename', &esal)
+new   1: insert into emp593 values('5', 'E', 525000)
+
+1 row created.
+
+SQL> /
+Enter value for eid: 6
+Enter value for ename: F
+Enter value for esal: 300000
+old   1: insert into emp593 values('&eid', '&ename', &esal)
+new   1: insert into emp593 values('6', 'F', 300000)
+
+1 row created.
+
+SQL> /
+Enter value for eid: 7
+Enter value for ename: G
+Enter value for esal: 325000
+old   1: insert into emp593 values('&eid', '&ename', &esal)
+new   1: insert into emp593 values('7', 'G', 325000)
+
+1 row created.
+
+SQL> /
+Enter value for eid: 8
+Enter value for ename: H
+Enter value for esal: 850000
+old   1: insert into emp593 values('&eid', '&ename', &esal)
+new   1: insert into emp593 values('8', 'H', 850000)
+
+1 row created.
+
+SQL> 9
+SP2-0226: Invalid line number
+SQL> /
+Enter value for eid: 9
+Enter value for ename: I
+Enter value for esal: 250000
+old   1: insert into emp593 values('&eid', '&ename', &esal)
+new   1: insert into emp593 values('9', 'I', 250000)
+
+1 row created.
+
+SQL> /
+Enter value for eid: 10
+Enter value for ename: J
+Enter value for esal: 275000
+old   1: insert into emp593 values('&eid', '&ename', &esal)
+new   1: insert into emp593 values('10', 'J', 275000)
+
+1 row created.
+
+SQL> select * from emp593;
+
+EID        ENAME            ESAL
+---------- ---------- ----------
+1          A              350000
+2          B              450000
+3          C              500000
+4          D              425000
+5          E              525000
+6          F              300000
+7          G              325000
+8          H              850000
+9          I              250000
+10         J              275000
+
+10 rows selected.
+
+SQL> delete from emp593 where esal >299999 and esal <400001;
+
+3 rows deleted.
+
+SQL> select * from emp593;
+
+EID        ENAME            ESAL
+---------- ---------- ----------
+2          B              450000
+3          C              500000
+4          D              425000
+5          E              525000
+8          H              850000
+9          I              250000
+10         J              275000
+
+7 rows selected.
+
+SQL> select ename from emp593 where eid < 4;
+
+ENAME
+----------
+B
+C
+
+SQL> commit;
+
+Commit complete.
+
+
+SQL> update emp593 set esal = 1000000 where eid = '5';
+
+1 row updated.
+
+SQL> select * from emp593;
+
+EID        ENAME            ESAL
+---------- ---------- ----------
+2          B              450000
+3          C              500000
+4          D              425000
+5          E             1000000
+8          H              850000
+9          I              250000
+10         J              275000
+
+7 rows selected.
+
+SQL> delete from emp593 where eid = '&eid';
+Enter value for eid: 4
+old   1: delete from emp593 where eid = '&eid'
+new   1: delete from emp593 where eid = '4'
+
+1 row deleted.
+
+SQL> select ename, eid from emp593 where esal >= 500000;
+
+ENAME      EID
+---------- ----------
+C          3
+E          5
+H          8 
+
+SQL> truncate table emp593;
+
+Table truncated.
+
+SQL> select * from emp593;
+
+no rows selected
+
+SQL> drop table emp593;
+
+Table dropped.
+
+SQL> commit;
+
+Commit complete.

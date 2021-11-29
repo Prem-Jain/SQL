@@ -1,0 +1,141 @@
+SQL> create table student593(sid varchar2(10), sname varchar2(15), sphno number(10));
+
+SQL> insert into student593 values('&sid', '&sname', &sphno);
+
+Enter value for sid: 209X1A0592
+Enter value for sname: Narasimha
+Enter value for sphno: 9063400455
+old   1:  insert into student593 values('&sid', '&sname', &sphno)
+new   1:  insert into student593 values('209X1A0592', 'Narasimha', 9063400455)
+
+1 row created.
+
+SQL> /
+
+Enter value for sid: 987543210
+Enter value for sname: XYZ
+Enter value for sphno: 9876543210
+old   1: insert into student593 values('&sid', '&sname', &sphno)
+new   1: insert into student593 values('987543210', 'XYZ', 9876543210)
+
+1 row created.
+
+SQL> desc student593;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ SID                                                VARCHAR2(10)
+ SNAME                                              VARCHAR2(15)
+ SPHNO                                              NUMBER(10)
+
+SQL> commit;
+
+Commit complete.
+
+SQL> alter table student593 add(sgrade number(4,2));
+
+Table altered.
+
+SQL> desc student593;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ SID                                                VARCHAR2(10)
+ SNAME                                              VARCHAR2(15)
+ SPHNO                                              NUMBER(10)
+ SGRADE                                             NUMBER(4,2)
+
+SQL> alter table student593 modify(sname varchar2(20));
+
+Table altered.
+
+SQL> desc student593;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ SID                                                VARCHAR2(10)
+ SNAME                                              VARCHAR2(20)
+ SPHNO                                              NUMBER(10)
+ SGRADE                                             NUMBER(4,2)
+
+
+SQL> alter table student593 drop(sgrade);
+
+Table altered.
+
+SQL> desc student593;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ SID                                                VARCHAR2(10)
+ SNAME                                              VARCHAR2(20)
+ SPHNO                                              NUMBER(10)
+
+SQL> commit;
+
+Commit complete.
+
+
+SQL> select * from student593;
+
+SID        SNAME                     SPHNO
+---------- -------------------- ----------
+1234567890 ABC                  1234567890
+987543210  XYZ                  9876543210
+
+SQL> alter table student593 add(sgrade varchar2(2));
+
+Table altered.
+
+SQL> update student593 set sgrade = 'A';
+
+2 rows updated.
+
+
+SQL> update student593 set sgrade = 'B' where sid = '987
+
+1 row updated.
+
+SQL> select * from student593;
+
+SID        SNAME                     SPHNO SG
+---------- -------------------- ---------- --
+1234567890 ABC                  1234567890 A
+987543210  XYZ                  9876543210 B
+
+SQL> delete from student593 where sname = 'XYZ';
+
+1 row deleted.
+
+SQL> select * from student593;
+
+SID        SNAME                     SPHNO SG
+---------- -------------------- ---------- --
+1234567890 ABC                  1234567890 A
+
+
+SQL> truncate table student593;
+
+Table truncated.
+
+SQL> desc student593;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ SID                                                VARCHAR2(10)
+ SNAME                                              VARCHAR2(20)
+ SPHNO                                              NUMBER(10)
+ SGRADE                                             VARCHAR2(2)
+
+SQL> select * from student593;
+
+no rows selected
+
+SQL> drop table student593;
+
+Table dropped.
+
+SQL> desc student593;
+ERROR:
+ORA-04043: object student593 does not exist
+
+SQL> commit;
+
+Commit complete.
+
+ 
