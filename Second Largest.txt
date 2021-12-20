@@ -1,0 +1,62 @@
+
+SQL> select accno, bal from acc593 where bal = (select max(bal) from acc593);
+
+ACCNO             BAL
+---------- ----------
+a6             654321
+
+SQL> select accno, max(bal) as bal from acc593;
+select accno, max(bal) as bal from acc593
+       *
+ERROR at line 1:
+ORA-00937: not a single-group group function
+
+
+SQL> select accno, max(bal) as bal from acc593 where bal < (select max(bal) from acc593);
+select accno, max(bal) as bal from acc593 where bal < (select max(bal) from acc593)
+       *
+ERROR at line 1:
+ORA-00937: not a single-group group function
+
+
+SQL> select max(bal) as bal from acc593;
+
+       BAL
+----------
+    654321
+
+SQL> select max(bal) as bal from acc593 where bal < (select max(bal) from acc593);
+
+       BAL
+----------
+    248624
+
+SQL> select accno, bal from acc593 where bal = (select max(bal) as bal from acc593 where bal < (sele
+ct max(bal) from acc593));
+
+ACCNO             BAL
+---------- ----------
+a12            248624
+
+
+SQL> select * from acc593 where rownum < 3;
+
+ACCNO      BNAME             BAL
+---------- ---------- ----------
+a7         Brichton        86249
+a8         Brichton        36985
+
+SQL> select accno, bal from acc593 where bal = (select min(bal) from (select distinct bal from acc59
+3 order by bal desc) where rownum < 3);
+
+ACCNO             BAL
+---------- ----------
+a12            248624
+
+
+SQL> select max(bal) from ((select * from acc593) minus (select * from acc593 where bal = (select ma
+x(bal) from acc593)));
+
+  MAX(BAL)
+----------
+    248624
