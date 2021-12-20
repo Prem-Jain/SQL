@@ -1,0 +1,241 @@
+SQL> set serveroutput on;
+
+SQL> @d:\593\Armstrong.sql;
+Enter value for n: 153
+old   7: n := &n;
+new   7: n := 153;
+Armstrong
+
+PL/SQL procedure successfully completed.
+
+SQL> /
+Enter value for n: 801
+old   7: n := &n;
+new   7: n := 801;
+Not Armstrong
+
+PL/SQL procedure successfully completed.
+
+SQL> @d:\593\Triangle.sql;
+Enter value for n: 5
+old   2: n number := &n;
+new   2: n number := 5;
+1
+2 2
+3 3 3
+4 4 4 4
+5 5 5 5 5
+
+PL/SQL procedure successfully completed.
+
+SQL> @d:\593\PrimeProcedure.sql;
+
+Procedure created.
+
+SQL> exec prime(31);
+Prime
+
+PL/SQL procedure successfully completed.
+
+SQL> exec prime(32);
+Not Prime
+
+PL/SQL procedure successfully completed.
+
+SQL> @d:\593\FactFunction.sql;
+
+Function created.
+
+SQL> select fact(5) from dual;
+
+   FACT(5)
+----------
+       120
+
+
+SQL> create table employee593(eid varchar2(4), ename varchar2(10), esal number(10), ephnone number(10));
+Table created.
+
+SQL> select * from employee593;
+
+no rows selected
+
+SQL> insert into employee593 values('&eid', '&ename', &esal, &ephone);
+Enter value for eid: e101
+Enter value for ename: Kiran
+Enter value for esal: 15000
+Enter value for ephone: 1234567890
+old   1: insert into employee593 values('&eid', '&ename', &esal, &ephone)
+new   1: insert into employee593 values('e101', 'Kiran', 15000, 1234567890)
+
+1 row created.
+
+SQL> /
+Enter value for eid: e102
+Enter value for ename: Vennela
+Enter value for esal: 20000
+Enter value for ephone: 2345678901
+old   1: insert into employee593 values('&eid', '&ename', &esal, &ephone)
+new   1: insert into employee593 values('e102', 'Vennela', 20000, 2345678901)
+
+1 row created.
+
+SQL> /
+Enter value for eid: e103
+Enter value for ename: Vyshu
+Enter value for esal: 30000
+Enter value for ephone: 3456789012
+old   1: insert into employee593 values('&eid', '&ename', &esal, &ephone)
+new   1: insert into employee593 values('e103', 'Vyshu', 30000, 3456789012)
+
+1 row created.
+
+SQL> /
+Enter value for eid: e104
+Enter value for ename: Varshini
+Enter value for esal: 40000
+Enter value for ephone: 4567890123
+old   1: insert into employee593 values('&eid', '&ename', &esal, &ephone)
+new   1: insert into employee593 values('e104', 'Varshini', 40000, 4567890123)
+
+1 row created.
+
+SQL> /
+Enter value for eid: e105
+Enter value for ename: Binod
+Enter value for esal: 50000
+Enter value for ephone: 5678901234
+old   1: insert into employee593 values('&eid', '&ename', &esal, &ephone)
+new   1: insert into employee593 values('e105', 'Binod', 50000, 5678901234)
+
+1 row created.
+
+SQL> commit;
+
+Commit complete.
+
+SQL>  @d:\593\ImplicitCursor.sql;
+5Employee Updated
+
+PL/SQL procedure successfully completed.
+
+SQL> select * from employee593;
+
+EID  ENAME            ESAL     EPHONE
+---- ---------- ---------- ----------
+e101 Kiran           15500 1234567890
+e102 Vennela         20500 2345678901
+e103 Vyshu           30500 3456789012
+e104 Varshini        40500 4567890123
+e105 Binod           50500 5678901234
+
+SQL> create table stud593(sno varchar2(4), m1 number(3), m2 number(3), m3 number(3), tot number(3), 
+avg number(5, 2), grade varchar2(15));
+
+Table created.
+
+SQL> insert into stud593(sno, m1, m2, m3) values ('&sno', &m1, &m2, &m3);
+Enter value for sno: s101
+Enter value for m1: 85
+Enter value for m2: 90
+Enter value for m3: 95
+old   1: insert into stud593(sno, m1, m2, m3) values ('&sno', &m1, &m2, &m3)
+new   1: insert into stud593(sno, m1, m2, m3) values ('s101', 85, 90, 95)
+
+1 row created.
+
+SQL> /
+Enter value for sno: s102
+Enter value for m1: 63
+Enter value for m2: 65
+Enter value for m3: 68
+old   1: insert into stud593(sno, m1, m2, m3) values ('&sno', &m1, &m2, &m3)
+new   1: insert into stud593(sno, m1, m2, m3) values ('s102', 63, 65, 68)
+
+1 row created.
+
+SQL> /
+Enter value for sno: s103
+Enter value for m1: 57
+Enter value for m2: 59
+Enter value for m3: 55
+old   1: insert into stud593(sno, m1, m2, m3) values ('&sno', &m1, &m2, &m3)
+new   1: insert into stud593(sno, m1, m2, m3) values ('s103', 57, 59, 55)
+
+1 row created.
+
+SQL> commit;
+
+Commit complete.
+
+SQL> select * from stud593;
+
+SNO          M1         M2         M3        TOT        AVG GRADE
+---- ---------- ---------- ---------- ---------- ---------- ---------------
+s101         85         90         95
+s102         63         65         68
+s103         57         59         55
+
+
+SQL> select * from stud593;
+
+SNO          M1         M2         M3        TOT        AVG GRADE
+---- ---------- ---------- ---------- ---------- ---------- ---------------
+s101         85         90         95
+s102         63         65         68
+s103         57         59         55
+
+
+SQL> @d:\593\ExplicitCursor.sql;
+
+PL/SQL procedure successfully completed.
+
+SQL> select * from stud593;
+
+SNO          M1         M2         M3        TOT        AVG GRADE
+---- ---------- ---------- ---------- ---------- ---------- ---------------
+s101         85         90         95        270         90 Distinction
+s102         63         65         68        196      65.33 First Class
+s103         57         59         55        171         57 Second Class
+
+SQL> select * from employee593;
+
+EID  ENAME            ESAL     EPHONE
+---- ---------- ---------- ----------
+e101 Kiran           15500 1234567890
+e102 Vennela         20500 2345678901
+e103 Vyshu           30500 3456789012
+e104 Varshini        40500 4567890123
+e105 Binod           50500 5678901234
+
+SQL> @d:\593\Triggers.sql;
+
+Warning: Trigger created with compilation errors.
+
+SQL> update employee593 set esal = esal + 500 where esal > 30000;
+update employee593 set esal = esal + 500 where esal > 30000
+       *
+ERROR at line 1:
+ORA-04098: trigger 'SCOTT.SAL_CHANGES' is invalid and failed re-validation
+
+
+SQL> drop trigger sal_changes;
+
+Trigger dropped.
+
+SQL> @d:\593\Triggers.sql;
+
+Trigger created.
+
+SQL>  update employee593 set esal = esal + 500 where esal > 30000;
+Old salary is 30500
+New salary is 31000
+Increased salary is 500
+Old salary is 40500
+New salary is 41000
+Increased salary is 500
+Old salary is 50500
+New salary is 51000
+Increased salary is 500
+
+3 rows updated.
